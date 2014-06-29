@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>BasicTools QUnit Tests</title>
+        <link rel="stylesheet" href="resources/qunit.css" />
+        
+        
+        <script src="resources/qunit.js"></script>
+        <script src="../BasicTools.js"></script>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+        <script>
+            // <![CDATA[
+
+            module('Verificação de Tipos');
+
+
+
+
+
+            test('TypeOf', function () {
+                var TypeOf = CodeCraft.BasicTools.TypeOf;
+
+                var s = 's';
+                var n = 0;
+                var arr = [];
+                var obj = {};
+                var fun = function () { };
+                var nO = new fun();
+
+
+                equal(TypeOf(s), '[object String]', '');
+                equal(TypeOf(n), '[object Number]', '');
+                equal(TypeOf(arr), '[object Array]', '');
+                equal(TypeOf(obj), '[object Object]', '');
+                equal(TypeOf(fun), '[object Function]', '');
+                equal(TypeOf(nO), '[object Object]', '');
+            });
+
+
+
+
+
+            test('IsNotNullValue', function () {
+                var IsNotNullValue = CodeCraft.BasicTools.IsNotNullValue;
+
+
+
+                ok(IsNotNullValue(0), '');
+                ok(IsNotNullValue('0'), '');
+                ok(IsNotNullValue(false), '');
+
+                ok(!IsNotNullValue(undefined), '');
+                ok(!IsNotNullValue(null), '');
+                ok(!IsNotNullValue(''), '');
+                
+
+                var valorSetado = [];
+                ok(IsNotNullValue(valorSetado), '');
+            });
+
+
+
+
+
+            test('IsObject', function () {
+                var IsObject = CodeCraft.BasicTools.IsObject;
+
+                var fTest = function () { };
+                var oT = new fTest();
+
+                var oTrue = [oT, { val: 'val' }, [], new Date()];
+                var oFalse = ['', '1', 'true', 'false', 1, true, false, fTest];
+
+                for (var it in oTrue) {
+                    ok(IsObject(oTrue[it]), 'object');
+                }
+
+
+                for (var it in oFalse) {
+                    ok(!IsObject(oFalse[it]), 'not object');
+                }
+
+            });
+
+
+
+
+
+            test('IsBoolean', function () {
+                var IsBoolean = CodeCraft.BasicTools.IsBoolean;
+
+                var bTrue = [true, false];
+                var bFalse = ['true', 'false', 'TRUE', 'FALSE', '0', '1', 0, 1];
+
+                for (var it in bTrue) {
+                    ok(IsBoolean(bTrue[it]), bTrue[it] + ' = "true"');
+                }
+
+                for (var it in bFalse) {
+                    ok(!IsBoolean(bFalse[it]), bFalse[it] + ' = "false"');
+                }
+
+            });
+
+
+
+
+
+            test('IsNumber', function () {
+                var IsNumber = CodeCraft.BasicTools.IsNumber;
+
+                var nTrue = [-1, 0, 1, 1.20];
+                var nFalse = ['-1', '0', '1', '1.20', true, false, {}, [], new Date()];
+
+                for (var it in nTrue) {
+                    ok(IsNumber(nTrue[it]), nTrue[it] + ' = "number"');
+                }
+
+                for (var it in nFalse) {
+                    ok(!IsNumber(nFalse[it]), nFalse[it] + ' = "not number"');
+                }
+
+            });
+
+
+
+
+
+            test('IsInteger', function () {
+                var IsInteger = CodeCraft.BasicTools.IsInteger;
+
+                var nTrue = [0.0, -1, 0, 1, 10, 300, 800000, 100000000];
+                var nFalse = [0.1, -1.2, 0.0005, 1.3, 10.8, 300.4, 800000.8, 100000000.0000001, '-1', '0', '1', '1.20', true, false, {}, [], new Date()];
+
+                for (var it in nTrue) {
+                    ok(IsInteger(nTrue[it]), nTrue[it] + ' = "number"');
+                }
+
+                for (var it in nFalse) {
+                    ok(!IsInteger(nFalse[it]), nFalse[it] + ' = "not number"');
+                }
+
+            });
+
+
+
+
+
+            test('IsString', function () {
+                var IsString = CodeCraft.BasicTools.IsString;
+
+                var sTrue = ['', '1', 'true', 'false'];
+                var sFalse = [1, true, false, [], {}, new Date()];
+
+                for (var it in sTrue) {
+                    ok(IsString(sTrue[it]), sTrue[it] + ' = "string"');
+                }
+
+                for (var it in sFalse) {
+                    ok(!IsString(sFalse[it]), sFalse[it] + ' = "not string"');
+                }
+
+            });
+
+
+
+
+
+            test('IsDate', function () {
+                var IsDate = CodeCraft.BasicTools.IsDate;
+
+                var dTrue = new Date();
+                var dFalse = ['', '1', 'true', 'false', 1, true, false, {}, []];
+
+                ok(IsDate(dTrue), 'date');
+
+                for (var it in dFalse) {
+                    ok(!IsDate(dFalse[it]), 'not date');
+                }
+
+            });
+
+
+
+
+
+            test('IsArray', function () {
+                var IsArray = CodeCraft.BasicTools.IsArray;
+
+                var aTrue = ['', '1', 'true', 'false'];
+                var aFalse = ['', '1', 'true', 'false', 1, true, false, {}, new Date()];
+
+                ok(IsArray(aTrue), 'array');
+
+                for (var it in aFalse) {
+                    ok(!IsArray(aFalse[it]), 'not array');
+                }
+
+            });
+
+
+
+
+
+            test('IsJSON', function () {
+                var IsJSON = CodeCraft.BasicTools.IsJSON;
+
+                var oTrue = { val: 'val' };
+                var oFalse = ['', '1', 'true', 'false', 1, true, false, [], new Date()];
+
+                ok(IsJSON(oTrue), 'json');
+
+                for (var it in oFalse) {
+                    ok(!IsJSON(oFalse[it]), 'not json');
+                }
+
+            });
+
+
+
+
+
+            test('IsFunction', function () {
+                var IsFunction = CodeCraft.BasicTools.IsFunction;
+
+                var fTrue = function () { };
+                var fFalse = ['', '1', 'true', 'false', 1, true, false, [], new Date(), {}];
+
+                ok(IsFunction(fTrue), 'function');
+
+                for (var it in fFalse) {
+                    ok(!IsFunction(fFalse[it]), 'not function');
+                }
+
+            });
+
+
+
+
+
+
+
+
+
+
+            module('Formatação de Strings');
+
+
+
+
+
+            test('Trim', function () {
+                var Trim = CodeCraft.BasicTools.Trim;
+
+                var result = Trim('  Valor Final  ');
+                var expected = 'Valor Final';
+                equal(result, expected, '');
+            });
+
+
+
+
+
+            test('ReplaceAll', function () {
+                var ReplaceAll = CodeCraft.BasicTools.ReplaceAll;
+
+                var str = 'Neste teste todas as letras "e" serão alteradas por um caracter "§".';
+                var result = ReplaceAll(str, 'e', '§');
+                var expected = 'N§st§ t§st§ todas as l§tras "§" s§rão alt§radas por um caract§r "§".';
+                equal(result, expected, '');
+            });
+
+
+
+
+
+            test('RemoveChars', function () {
+                var RemoveChars = CodeCraft.BasicTools.RemoveChars;
+
+                var str = 'Todas vogais desta sentença de teste deverão desaparecer';
+                var result = RemoveChars(str, 'aeiou');
+                var expected = 'Tds vgs dst sntnç d tst dvrã dsprcr';
+                equal(result, expected, '');
+
+                var str = 'yyyy-MM-ddTHH:mm:ssZ';
+                var result = RemoveChars(str, '-/.:wWzZ');
+                var expected = 'yyyyMMddTHHmmss';
+                equal(result, expected, '');
+            });
+
+
+
+
+
+
+
+
+
+
+
+            module('Conversão de Tipos');
+
+
+
+
+
+            test('TryParse.ToBoolean', function () {
+                var ToBoolean = CodeCraft.BasicTools.TryParse.ToBoolean;
+
+                var bTrue = [true, 'yes', 1, '1', 'on', 'checked', 'disabled', 'multiple', 'readonly', 'required'];
+                var bFalse = [false, 'no', 0, '0', 'off', 'another', undefined, null, ''];
+
+                for (var it in bTrue) {
+                    ok(ToBoolean(bTrue[it]), 'Valor ' + bTrue[it] + ' = "true"');
+                }
+
+                for (var it in bFalse) {
+                    ok(!ToBoolean(bFalse[it]), 'Valor ' + bFalse[it] + ' = "false"');
+                }
+            });
+
+
+
+
+
+            test('TryParse.ToNumber', function () {
+                var ToNumber = CodeCraft.BasicTools.TryParse.ToNumber;
+
+
+                var convertTrue = [-1, 0, 1, 0.0002, '-1', '0', '1', '0.0002', false, true];
+                var resultConvert = [-1, 0, 1, 0.0002, -1, 0, 1, 0.0002, 0, 1];
+
+
+                var convertFalse = ['', null, undefined, 'teste', {}, [], 'false', 'true'];
+
+                for (var it in convertTrue) {
+                    equal(ToNumber(convertTrue[it]), resultConvert[it], 'convert true');
+                }
+
+
+                for (var it in convertFalse) {
+                    equal(ToNumber(convertFalse[it]), convertFalse[it], 'convert false');
+                }
+
+            });
+
+
+
+
+
+            test('TryParse.ToInteger', function () {
+                var ToInteger = CodeCraft.BasicTools.TryParse.ToInteger;
+
+
+                var convertTrue = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.999999, 2,
+                                    '1', '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.999999', '2',
+                                    true, false];
+                var resultConvert = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+                                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+                                    1, 0];
+
+                equal(convertTrue.length, resultConvert.length, '');
+
+
+                var convertFalse = ['', null, undefined, 'teste', {}, [], 'false', 'true', '11111c', '1@'];
+
+
+                for (var it in convertTrue) {
+                    equal(ToInteger(convertTrue[it]), resultConvert[it], 'convert true');
+                }
+
+
+                for (var it in convertFalse) {
+                    equal(ToInteger(convertFalse[it]), convertFalse[it], 'convert false');
+                }
+
+            });
+
+
+
+
+
+            test('TryParse.ToFloat', function () {
+                var ToFloat = CodeCraft.BasicTools.TryParse.ToFloat;
+
+
+                var convertTrue = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.999999, 2,
+                                    '1', '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.999999', '2',
+                                    true, false];
+                var resultConvert = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.999999, 2,
+                                    1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.999999, 2,
+                                    1, 0];
+
+                equal(convertTrue.length, resultConvert.length, '');
+
+
+                var convertFalse = ['', null, undefined, 'teste', {}, [], 'false', 'true', '11111c', '1@'];
+
+
+                for (var it in convertTrue) {
+                    equal(ToFloat(convertTrue[it]), resultConvert[it], 'convert true');
+                }
+
+
+                for (var it in convertFalse) {
+                    equal(ToFloat(convertFalse[it]), convertFalse[it], 'convert false');
+                }
+
+            });
+
+
+
+
+
+            test('TryParse.ToDate', function () {
+                var ToDate = CodeCraft.BasicTools.TryParse.ToDate;
+
+
+                // Momento zero!
+                var zeroMoment = new Date(0);
+                var zeroParse = ToDate(0);
+                equal(zeroMoment.getTime(), zeroParse.getTime(), '');
+
+
+                var convertTrue = ['1980-05-17 09:45:15', '1980-05-17', '17/05/1980'];
+                var convertFormat = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd', 'dd/MM/yyyy'];
+                var resultConvert = [new Date(1980, 4, 17, 9, 45, 15), new Date(1980, 4, 17), new Date(1980, 4, 17)];
+
+                for (var it in convertTrue) {
+                    var dTemp = ToDate(convertTrue[it], convertFormat[it]);
+                    equal(dTemp.getTime(), resultConvert[it].getTime(), 'convert true');
+                }
+
+
+                var convertFalse = ['', null, undefined, 'teste', {}, [], 'false', 'true', '11111c', '1@'];
+
+                for (var it in convertFalse) {
+                    equal(ToDate(convertFalse[it]), convertFalse[it], 'convert false');
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+            module('Manipulação de Objetos');
+
+
+
+
+
+            test('InitiSet', function () {
+                var InitiSet = CodeCraft.BasicTools.InitiSet;
+
+
+                var ini = {
+                    'val0': 0,
+                    'val1': '0',
+                    'val2': [],
+                    'val3': {}
+                };
+
+
+                var notIni = {
+                    'val0': undefined,
+                    'val1': null,
+                    'val2': ''
+                };
+
+
+                for (var it in ini) {
+                    equal(InitiSet(ini[it], 'nval'), ini[it], 'initi');
+                }
+
+                for (var it in notIni) {
+                    equal(InitiSet(notIni[it], 'nval'), 'nval', 'not initi');
+                }
+            });
+
+
+
+
+
+            test('CloneObject', function () {
+                var CloneObject = CodeCraft.BasicTools.CloneObject;
+
+
+
+                // Teste de clonagem de data
+                var a = new Date(1980, 4, 17);
+                var c = CloneObject(a);
+                equal(JSON.stringify(a), JSON.stringify(c), '');
+
+
+
+                // Teste de clonagem de array
+                var a = [0, 1, 2, 3, 4];
+                var c = CloneObject(a);
+                equal(a.length, c.length, '');
+
+                equal(a[0], c[0], '');
+                equal(a[1], c[1], '');
+                equal(a[2], c[2], '');
+                equal(a[3], c[3], '');
+                equal(a[4], c[4], '');
+
+                equal(JSON.stringify(a), JSON.stringify(c), '');
+
+
+
+                // Teste de clonagem de objeto JSON
+                var Original = {
+                    prop1: 'p1',
+                    prop2: 'p2',
+                    prop3: {
+                        sub1: new Date(1980, 4, 17),
+                        sub2: 'sub2',
+                        sub3: 'sub3',
+                        sub4: [1, 2, 3, 4, 5]
+                    },
+                    prop4: 'p4'
+                };
+
+
+
+                var clone = CloneObject(Original);
+                equal(JSON.stringify(clone), JSON.stringify(Original), '');
+
+
+                Original.prop3.sub4[3] = 10;
+                notEqual(JSON.stringify(clone), JSON.stringify(Original), '');
+
+
+                equal(clone.prop3.sub1.getFullYear(), 1980, '');
+                equal(JSON.stringify(clone.prop3.sub1), JSON.stringify(Original.prop3.sub1), '');
+            });
+
+
+
+
+
+
+
+
+            // ]]>
+        </script>
+    </body>
+</html>
