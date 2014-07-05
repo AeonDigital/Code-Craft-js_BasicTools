@@ -343,7 +343,7 @@ var BasicTools = function () {
         /**
         * Coleção de métodos para conversão de tipos.
         *
-        * @memberof TryParse
+        * @memberof BasicTools
         *
         */
         TryParse: {
