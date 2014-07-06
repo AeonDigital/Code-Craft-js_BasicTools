@@ -14,6 +14,13 @@
 
 
 
+// --------------------
+// Caso não exista, inicia objeto CodeCraft
+var CodeCraft = (CodeCraft || function () { });
+if(typeof(CodeCraft) === 'function') { CodeCraft = new CodeCraft(); };
+
+
+
 
 
 
@@ -28,7 +35,7 @@
 *
 * @type {Class}
 */
-var BasicTools = function () {
+CodeCraft.BasicTools = new (function () {
 
 
 
@@ -747,22 +754,4 @@ var BasicTools = function () {
 
 
     return p;
-};
-
-
-
-
-
-
-
-
-
-// --------------------
-// Caso não exista, inicia objeto CodeCraft
-var CodeCraft = (CodeCraft || function () { });
-if(typeof(CodeCraft) === 'function') { CodeCraft = new CodeCraft(); };
-
-
-
-// Associa o novo objeto ao "CodeCraft"
-CodeCraft.BasicTools = new BasicTools();
+});
