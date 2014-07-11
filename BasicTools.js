@@ -719,8 +719,8 @@ CodeCraft.BasicTools = new (function () {
         */
         CloneObject: function (o) {
 
-            if (p.IsObject(o)) {
-                //var t = p.TypeOf(o);
+            if (o === null || o === undefined) { return o; }
+            else if (p.IsObject(o)) {
 
                 if (p.IsDate(o)) {
                     return new Date(o.getTime());
