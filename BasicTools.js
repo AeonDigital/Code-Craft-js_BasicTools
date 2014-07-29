@@ -65,7 +65,7 @@ CodeCraft.BasicTools = new (function () {
         * @return {String}
         */
         TypeOf: function (o) {
-            return Object.prototype.toString.call(o)
+            return Object.prototype.toString.call(o);
         },
 
 
@@ -744,8 +744,54 @@ CodeCraft.BasicTools = new (function () {
             else {
                 return o;
             }
-        }
+        },
 
+
+
+
+        /**
+        * Identifica o tipo de campo é o elemento passado.
+        * 
+        * @function GetFieldType
+        *
+        * @memberof BasicTools
+        *
+        * @param {Node}             f           Node de um campo de formulário.
+        *
+        * @return {Object}
+        */
+        GetFieldType : function (f) {
+            var r = {
+                IsField: false,
+                IsTextArea: false,
+                IsSelect: false,
+                IsRadio: false,
+                IsCheckbox: false
+            };
+
+
+            var t = f.tagName.toLowerCase();
+
+            switch (t) {
+                case 'input':
+                    tp = f.getAttribute('type').toLowerCase();
+                    if (tp == 'radio') { r.IsRadio = true; }
+                    else if (tp == 'checkbox') { r.IsCheckbox = true; }
+                    else { r.IsField = true; }
+
+                    break;
+
+                case 'textarea':
+                    r.IsTextArea = true;
+                    break;
+
+                case 'select':
+                    r.IsSelect = true;
+                    break;
+            }
+
+            return r;
+        }
 
     };
 
