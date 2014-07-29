@@ -59,6 +59,7 @@ caso a conversão não seja possível.
 * `InitiSet`                        : Caso o objeto a ser testado não tenha sido iniciado, retorna o valor padrão.
 * `DynamicSort`                     : Permite ordenar um array de objetos a partir da indicação de uma de suas propriedades.
 * `CloneObject`                     : Clona um objeto completamente.
+* `GetFieldType`                    : Identifica o tipo de campo do elemento passado.
 
 
 **Importante**

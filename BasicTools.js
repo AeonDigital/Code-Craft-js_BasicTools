@@ -750,7 +750,7 @@ CodeCraft.BasicTools = new (function () {
 
 
         /**
-        * Identifica o tipo de campo é o elemento passado.
+        * Identifica o tipo de campo do elemento passado
         * 
         * @function GetFieldType
         *
