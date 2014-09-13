@@ -430,10 +430,11 @@
                 var convertTrue = ['1980-05-17 09:45:15', '1980-05-17', '17/05/1980'];
                 var convertFormat = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd', 'dd/MM/yyyy'];
                 var resultConvert = [new Date(1980, 4, 17, 9, 45, 15), new Date(1980, 4, 17), new Date(1980, 4, 17)];
+                var t = new Date();
 
                 for (var it in convertTrue) {
                     var dTemp = ToDate(convertTrue[it], convertFormat[it]);
-                    equal(dTemp.getTime(), resultConvert[it].getTime(), 'convert true');
+                    equal(dTemp.getTimezoneOffset(), resultConvert[it].getTimezoneOffset(), 'convert true');
                 }
 
 
