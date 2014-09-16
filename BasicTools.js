@@ -774,7 +774,7 @@ CodeCraft.BasicTools = new (function () {
 
             switch (t) {
                 case 'input':
-                    tp = f.getAttribute('type').toLowerCase();
+                    var tp = f.getAttribute('type').toLowerCase();
                     if (tp == 'radio') { r.IsRadio = true; }
                     else if (tp == 'checkbox') { r.IsCheckbox = true; }
                     else { r.IsField = true; }
