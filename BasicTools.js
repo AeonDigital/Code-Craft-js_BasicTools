@@ -766,7 +766,7 @@ CodeCraft.BasicTools = new (function () {
                 IsTextArea: false,
                 IsSelect: false,
                 IsRadio: false,
-                IsCheckbox: false
+                IsCheckBox: false
             };
 
 
@@ -776,7 +776,7 @@ CodeCraft.BasicTools = new (function () {
                 case 'input':
                     var tp = f.getAttribute('type').toLowerCase();
                     if (tp == 'radio') { r.IsRadio = true; }
-                    else if (tp == 'checkbox') { r.IsCheckbox = true; }
+                    else if (tp == 'checkbox') { r.IsCheckBox = true; }
                     else { r.IsField = true; }
 
                     break;
