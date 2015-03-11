@@ -366,7 +366,7 @@ CodeCraft.BasicTools = new (function () {
             * @example Exemplos de conversão
             * True = true; yes; 1; on; checked; disabled; multiple; readonly; required.
             * False = false; no; 0; off, undefined, null, ''
-            * Qualquer outro valor = False
+            * 
             *
             * @return {Boolean}
             */
