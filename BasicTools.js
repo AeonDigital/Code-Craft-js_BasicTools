@@ -628,7 +628,7 @@ CodeCraft.BasicTools = new (function () {
         * @param {Object}           [d = null]          Valor padrão a ser retornado.
         * @param {Boolean}          [u = false]         Se "true", passa a considerar não iniciados apenas valores undefined.
         *
-        * @return {!Object}
+        * @return {?Object}
         */
         InitiSet: function (o, d, u) {
             d = (d === undefined) ? null : d;
