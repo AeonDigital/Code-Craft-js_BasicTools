@@ -297,6 +297,38 @@
 
 
 
+            test('GetQueryString', function () {
+                var GetQueryString = CodeCraft.BasicTools.GetQueryString;
+
+                var url = 'http://www.gizmodo.com.br?q1=v1&Q2=V2';
+
+                var result = GetQueryString('q1', url);
+                var expected = 'v1';
+                equal(result, expected, '');
+
+                var result = GetQueryString('q2', url);
+                var expected = 'V2';
+                equal(result, expected, '');
+
+                var result = GetQueryString('Q2', url);
+                var expected = 'V2';
+                equal(result, expected, '');
+
+                var result = GetQueryString('q3', url);
+                var expected = null;
+                equal(result, expected, '');
+
+
+                var result = GetQueryString('test');
+                var expected = 'value';
+                //equal(result, expected, '');
+            });
+
+
+
+
+
+
 
 
 

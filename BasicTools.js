@@ -326,6 +326,30 @@ CodeCraft.BasicTools = new (function () {
 
 
 
+        /**
+        * Retorna o valor da querystring indicada.
+        * 
+        * @function GetQueryString
+        *
+        * @memberof BasicTools
+        *
+        * @param {String}           k           QueryString a ser procurada.
+        * @param {String}           [url]       Url na qual a pesquisa será feita, caso não seja informada pesquisa na URL atual.
+        *
+        * @return {!String}
+        */
+        GetQueryString: function (k, url) {
+            url = (url === undefined) ? window.location.href : url;
+
+            var reg = new RegExp('[?&]' + k + '=([^&#]*)', 'i');
+            var v = reg.exec(url);
+
+            return ((v) ? v[1] : null);
+        },
+
+
+
+
 
 
 
@@ -760,7 +784,7 @@ CodeCraft.BasicTools = new (function () {
         *
         * @return {Object}
         */
-        GetFieldType : function (f) {
+        GetFieldType: function (f) {
             var r = {
                 IsField: false,
                 IsTextArea: false,
