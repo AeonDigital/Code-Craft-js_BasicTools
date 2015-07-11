@@ -344,7 +344,7 @@ CodeCraft.BasicTools = new (function () {
             var reg = new RegExp('[?&]' + k + '=([^&#]*)', 'i');
             var v = reg.exec(url);
 
-            return ((v) ? v[1] : null);
+            return ((v) ? decodeURI(v[1]) : null);
         },
 
 
