@@ -256,7 +256,7 @@ CodeCraft.BasicTools = new (function () {
 
 
 
-        // -------------------------------------
+        // --------------------------------------
         // FORMATAÇÃO DE STRINGS
 
 
