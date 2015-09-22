@@ -57,7 +57,7 @@
                 ok(!IsNotNullValue(undefined), '');
                 ok(!IsNotNullValue(null), '');
                 ok(!IsNotNullValue(''), '');
-                
+
 
                 var valorSetado = [];
                 ok(IsNotNullValue(valorSetado), '');
@@ -580,6 +580,26 @@
             });
 
 
+
+
+
+            test('GetUniqueValues', function () {
+                var GetUniqueValues = CodeCraft.BasicTools.GetUniqueValues;
+
+
+                var arr1 = [0, 1, 2, 3, 4, 5];
+                var arr2 = [4, 5, 6, 7, 8, 9, 10];
+
+                var concat = arr1.concat(arr2);
+                var arrFinal = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+                console.log(concat);
+                var unique = GetUniqueValues(concat);
+                console.log(unique);
+                for (var it in unique) {
+                    equal(unique[it], arrFinal[it], '');
+                }
+            });
 
 
 

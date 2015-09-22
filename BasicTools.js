@@ -835,7 +835,7 @@ CodeCraft.BasicTools = new (function () {
             var nA = [];
 
             for (var it in arr) {
-                if (name.indexOf(arr[it]) === -1) {
+                if (nA.indexOf(arr[it]) === -1) {
                     nA.push(arr[it]);
                 }
             }
