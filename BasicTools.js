@@ -815,8 +815,33 @@ CodeCraft.BasicTools = new (function () {
             }
 
             return r;
-        }
+        },
 
+
+
+
+        /**
+        * Retorna um novo array apenas com valores únicos do array passado.
+        * 
+        * @function GetUniqueValues
+        *
+        * @memberof BasicTools
+        *
+        * @param {Node}             arr         Array que será processado.
+        *
+        * @return {Array}
+        */
+        GetUniqueValues: function (arr) {
+            var nA = [];
+
+            for (var it in arr) {
+                if (name.indexOf(arr[it]) === -1) {
+                    nA.push(arr[it]);
+                }
+            }
+
+            return nA;
+        }
     };
 
 
