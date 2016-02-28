@@ -288,7 +288,7 @@ CodeCraft.BasicTools = new (function () {
         *
         * @param {String}           s           String que será ajustada.
         * @param {String}           o           String que será substituída.
-        * @param {String}           n           String que será adicionada no lugar de "sold".
+        * @param {String}           n           String que será adicionada no lugar de "o".
         *
         * @return {String}
         */
